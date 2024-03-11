@@ -8,9 +8,8 @@ import org.joml.Vector3f;
 import java.nio.ByteBuffer;
 
 /**
- * This file is based on https://github.com/DenTechs/VirtualDesktop_ReadMMF/blob/main/read_virtualdesktop_mmf.py, which,
- * as of writing, does NOT contain a license. As such, this file does not fall under the MIT license, and should be considered
- * unusable at this time.
+ * https://discord.com/channels/564087419918483486/588170196968013845/1216564512132567082 contains
+ * permission to release this file under MIT. Thanks, DenTechs! :)
  */
 public class VRDataGrabber {
 

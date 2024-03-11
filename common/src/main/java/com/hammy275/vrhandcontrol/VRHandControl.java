@@ -9,7 +9,7 @@ public class VRHandControl
 
 	public static void init() {
 		ClientTickEvent.CLIENT_POST.register((minecraft) -> {
-			VRDataGrabber grabber = new VRDataGrabber(true);
+			VRDataGrabber grabber = new VRDataGrabber();
 			grabber.read();
 		});
 	}

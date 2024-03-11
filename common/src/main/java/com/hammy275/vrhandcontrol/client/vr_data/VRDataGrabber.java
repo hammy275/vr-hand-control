@@ -14,7 +14,6 @@ import java.nio.ByteBuffer;
  */
 public class VRDataGrabber {
 
-    private boolean useDebugging;
     private ByteBuffer buffer;
     private Pointer pointer;
 
@@ -40,14 +39,8 @@ public class VRDataGrabber {
     public BodyJointLocation[] bodyJoints = new BodyJointLocation[84];
     public SkeletonJoint[] skeletonJoints = new SkeletonJoint[84];
     public int skeletonChangedCount = 0;
-    // 2278 total members
 
     public VRDataGrabber() {
-        this(false);
-    }
-
-    public VRDataGrabber(boolean useDebugging) {
-        this.useDebugging = useDebugging;
         WinNT.HANDLE handle = MyKernel32.INSTANCE.OpenFileMapping(WinNT.FILE_MAP_READ, false, "VirtualDesktop.BodyState");
         pointer = MyKernel32.INSTANCE.MapViewOfFile(handle, WinNT.FILE_MAP_READ, 0, 0, 12288);
     }

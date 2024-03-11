@@ -16,6 +16,7 @@ public class VRDataGrabber {
     private ByteBuffer buffer;
     private Pointer pointer;
 
+    private boolean dataRead = false;
     public boolean faceIsValid = false;
     public boolean isEyeFollowingBlendShapesValid = false;
     public float[] expressionWeights = new float[70];
@@ -95,7 +96,24 @@ public class VRDataGrabber {
 
         this.skeletonChangedCount = getInt();
 
+        this.dataRead = true;
         return true;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        // Very imperfect implementation that assumes that hand states are imperfect enough that if they're
+        // different, the rest of the data also is.
+        if (obj instanceof VRDataGrabber other && this.getClass() == other.getClass()) {
+            if (!this.dataRead) {
+                return !other.dataRead;
+            } else {
+                return this.leftAimState.equals(other.leftAimState) && this.rightAimState.equals(other.rightAimState)
+                        && this.leftHandJointStates[0].equals(other.leftHandJointStates[0]);
+            }
+
+        }
+        return false;
     }
 
     private Quaternionf getQuaternion() {

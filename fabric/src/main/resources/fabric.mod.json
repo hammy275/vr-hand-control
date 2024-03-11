@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "id": "vr_hand_control",
+  "version": "${version}",
+
+  "name": "VR Hand Control",
+  "description": "",
+  "authors": [],
+  "contact": {},
+
+  "license": "MIT",
+  "icon": "icon.png",
+
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "com.hammy275.vrhandcontrol.fabric.VRHandControlFabric"
+    ]
+  },
+  "mixins": [
+    "vr_hand_control.mixins.json",
+    "vr_hand_control-common.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.15.7",
+    "minecraft": ">=1.20.4"
+  }
+}

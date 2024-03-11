@@ -2,7 +2,6 @@ package com.hammy275.vrhandcontrol;
 
 import com.hammy275.vrhandcontrol.client.vr_data.VRDataGrabber;
 import dev.architectury.event.events.client.ClientTickEvent;
-import net.minecraft.network.chat.Component;
 
 public class VRHandControl
 {

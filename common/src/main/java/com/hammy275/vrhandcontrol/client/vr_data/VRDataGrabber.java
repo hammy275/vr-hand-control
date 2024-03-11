@@ -1,21 +1,17 @@
 package com.hammy275.vrhandcontrol.client.vr_data;
 
-import com.sun.jna.Native;
 import com.sun.jna.Pointer;
-import com.sun.jna.platform.win32.Kernel32;
-import com.sun.jna.platform.win32.Kernel32Util;
 import com.sun.jna.platform.win32.WinNT;
-import net.minecraft.client.Minecraft;
-import org.apache.commons.lang3.StringEscapeUtils;
 import org.joml.Quaternionf;
 import org.joml.Vector3f;
 
-import java.io.RandomAccessFile;
 import java.nio.ByteBuffer;
-import java.nio.MappedByteBuffer;
-import java.nio.channels.FileChannel;
-import java.util.logging.Logger;
 
+/**
+ * This file is based on https://github.com/DenTechs/VirtualDesktop_ReadMMF/blob/main/read_virtualdesktop_mmf.py, which,
+ * as of writing, does NOT contain a license. As such, this file does not fall under the MIT license, and should be considered
+ * unusable at this time.
+ */
 public class VRDataGrabber {
 
     private boolean useDebugging;

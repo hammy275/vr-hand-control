@@ -1,12 +1,14 @@
-package com.hammy275.vrhandcontrol.client.gesture;
+package com.hammy275.vrhandcontrol.common.vr.handlers;
 
+import com.hammy275.vrhandcontrol.VRHandControl;
 import com.hammy275.vrhandcontrol.client.vr_data.Finger;
 import com.hammy275.vrhandcontrol.client.vr_data.Hand;
 import com.hammy275.vrhandcontrol.client.vr_data.Joint;
 import com.hammy275.vrhandcontrol.client.vr_data.VRData;
 import com.mojang.datafixers.util.Pair;
-import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.player.Player;
 import org.joml.Vector3f;
 
 import java.util.LinkedList;
@@ -16,7 +18,7 @@ public class SnapHandler implements GestureHandler {
     private boolean middlePinched = false;
 
     @Override
-    public boolean handleDetection(VRData data, LinkedList<VRData> oldData, Minecraft mc) {
+    public boolean handleDetection(VRData data, LinkedList<VRData> oldData) {
         // TODO: Potentitally detect if the middle finger tip is extremely close to the palm after the snap motion
         if (middlePinched && !isMiddlePinched(data)) {
             Pair<Finger, Float> maxPinch = data.rightAimState.getMaxFingerPinch();
@@ -33,9 +35,14 @@ public class SnapHandler implements GestureHandler {
     }
 
     @Override
-    public boolean performAction(VRData data, LinkedList<VRData> oldData, Minecraft mc) {
-        mc.player.sendSystemMessage(Component.literal("Snap detected!"));
+    public boolean performAction(Player player) {
+        player.sendSystemMessage(Component.literal("Snap detected!"));
         return true;
+    }
+
+    @Override
+    public ResourceLocation getID() {
+        return new ResourceLocation(VRHandControl.MOD_ID, "snap");
     }
 
     private boolean isMiddlePinched(VRData data) {

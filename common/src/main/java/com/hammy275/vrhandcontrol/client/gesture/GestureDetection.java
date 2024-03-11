@@ -1,23 +1,23 @@
 package com.hammy275.vrhandcontrol.client.gesture;
 
 import com.hammy275.vrhandcontrol.client.vr_data.VRData;
+import com.hammy275.vrhandcontrol.common.network.Network;
+import com.hammy275.vrhandcontrol.common.network.packet.GestureActionPacket;
+import com.hammy275.vrhandcontrol.common.vr.handlers.GestureHandler;
+import com.hammy275.vrhandcontrol.common.vr.GestureHandlers;
 import net.minecraft.client.Minecraft;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.List;
 
-public class Gestures {
+public class GestureDetection {
 
-    private static final Gestures HANDLER = new Gestures();
+    private static final GestureDetection HANDLER = new GestureDetection();
 
-    private final List<GestureHandler> gestureHandlers = new ArrayList<>();
     private VRData data = new VRData();
     private final LinkedList<VRData> oldData = new LinkedList<>();
     private final Minecraft mc = Minecraft.getInstance();
 
-    private Gestures() {
-        gestureHandlers.add(new SnapHandler());
+    private GestureDetection() {
     }
 
     public void onClientTick(Minecraft minecraft) {
@@ -31,19 +31,20 @@ public class Gestures {
             oldData.removeLast();
         }
         if (mc.player != null) {
-            // For each gesture handler, handle detection. If it detects the gesture and we haven't performed some
+            // For each gesture handler, handle detection. If it detects the gesture, and we haven't performed some
             // other action successfully, perform the action and prevent other actions this tick.
             boolean allowActions = true;
-            for (GestureHandler handler : gestureHandlers) {
-                if (handler.handleDetection(data, oldData, mc) && allowActions && handler.performAction(data, oldData, mc)) {
+            for (GestureHandler handler : GestureHandlers.gestureHandlers) {
+                if (handler.handleDetection(data, oldData) && allowActions) {
                     allowActions = false;
+                    Network.INSTANCE.sendToServer(new GestureActionPacket(handler.getID()));
                 }
             }
         }
 
     }
 
-    public static Gestures getInstance() {
+    public static GestureDetection getInstance() {
         return HANDLER;
     }
 }

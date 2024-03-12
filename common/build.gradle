@@ -8,6 +8,8 @@ dependencies {
     modImplementation "net.fabricmc:fabric-loader:${rootProject.fabric_loader_version}"
     // Remove the next line if you don't want to depend on the API
     modApi "dev.architectury:architectury:${rootProject.architectury_version}"
+    modApi "curse.maven:mcvrapi-591092:${rootProject.mcvrapi_fabric_version}"
+    modApi "curse.maven:vivecraft-667903:${rootProject.vivecraft_fabric_version}"
 }
 
 publishing {

@@ -1,4 +1,4 @@
-package com.hammy275.vrhandcontrol.client.vr_data;
+package com.hammy275.vrhandcontrol.client.vr_data.vd;
 
 import com.sun.jna.Pointer;
 import com.sun.jna.platform.win32.WinNT;

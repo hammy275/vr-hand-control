@@ -1,6 +1,6 @@
 package com.hammy275.vrhandcontrol.common.vr.handlers;
 
-import com.hammy275.vrhandcontrol.client.vr_data.VRData;
+import com.hammy275.vrhandcontrol.client.vr_data.vd.VRData;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
 

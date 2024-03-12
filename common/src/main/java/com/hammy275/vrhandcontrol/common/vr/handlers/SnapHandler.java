@@ -1,10 +1,10 @@
 package com.hammy275.vrhandcontrol.common.vr.handlers;
 
 import com.hammy275.vrhandcontrol.VRHandControl;
-import com.hammy275.vrhandcontrol.client.vr_data.Finger;
-import com.hammy275.vrhandcontrol.client.vr_data.Hand;
-import com.hammy275.vrhandcontrol.client.vr_data.Joint;
-import com.hammy275.vrhandcontrol.client.vr_data.VRData;
+import com.hammy275.vrhandcontrol.client.vr_data.vd.Finger;
+import com.hammy275.vrhandcontrol.client.vr_data.vd.Hand;
+import com.hammy275.vrhandcontrol.client.vr_data.vd.Joint;
+import com.hammy275.vrhandcontrol.client.vr_data.vd.VRData;
 import com.mojang.datafixers.util.Pair;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;

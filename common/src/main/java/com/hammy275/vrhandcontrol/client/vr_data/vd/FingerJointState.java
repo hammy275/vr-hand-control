@@ -1,4 +1,4 @@
-package com.hammy275.vrhandcontrol.client.vr_data;
+package com.hammy275.vrhandcontrol.client.vr_data.vd;
 
 import org.joml.Vector3f;
 

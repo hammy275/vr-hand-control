@@ -1,6 +1,6 @@
 package com.hammy275.vrhandcontrol.client.gesture;
 
-import com.hammy275.vrhandcontrol.client.vr_data.VRData;
+import com.hammy275.vrhandcontrol.client.vr_data.vd.VRData;
 import com.hammy275.vrhandcontrol.common.network.Network;
 import com.hammy275.vrhandcontrol.common.network.packet.GestureActionPacket;
 import com.hammy275.vrhandcontrol.common.vr.handlers.GestureHandler;

@@ -1,5 +1,6 @@
 package com.hammy275.vrhandcontrol.common.network.packet;
 
+import com.hammy275.vrhandcontrol.client.vr_data.vivecraft.VRPlugin;
 import com.hammy275.vrhandcontrol.common.vr.handlers.GestureHandler;
 import com.hammy275.vrhandcontrol.common.vr.GestureHandlers;
 import dev.architectury.networking.NetworkManager;
@@ -28,7 +29,7 @@ public class GestureActionPacket {
     public void handle(Supplier<NetworkManager.PacketContext> ctx) {
         ctx.get().queue(() -> {
             ServerPlayer player = ctx.get().getPlayer() instanceof ServerPlayer ? (ServerPlayer) ctx.get().getPlayer() : null;
-            if (player != null) {
+            if (player != null && VRPlugin.API.playerInVR(player)) {
                 for (GestureHandler handler : GestureHandlers.gestureHandlers) {
                     if (handler.getID().equals(this.actionID)) {
                         handler.performAction(player);

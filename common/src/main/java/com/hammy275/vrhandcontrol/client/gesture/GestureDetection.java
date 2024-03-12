@@ -1,6 +1,7 @@
 package com.hammy275.vrhandcontrol.client.gesture;
 
 import com.hammy275.vrhandcontrol.client.vr_data.vd.VRData;
+import com.hammy275.vrhandcontrol.client.vr_data.vivecraft.VRPlugin;
 import com.hammy275.vrhandcontrol.common.network.Network;
 import com.hammy275.vrhandcontrol.common.network.packet.GestureActionPacket;
 import com.hammy275.vrhandcontrol.common.vr.handlers.GestureHandler;
@@ -21,6 +22,9 @@ public class GestureDetection {
     }
 
     public void onClientTick(Minecraft minecraft) {
+        if (minecraft.player != null && !VRPlugin.API.playerInVR(mc.player)) {
+            return;
+        }
         data = new VRData();
         data.read();
         if (!oldData.isEmpty() && oldData.getFirst().equals(data)) {

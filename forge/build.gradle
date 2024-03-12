@@ -3,7 +3,6 @@ plugins {
 }
 loom {
     forge {
-        mixinConfig "vr_hand_control-common.mixins.json"
         mixinConfig "vr_hand_control.mixins.json"
     }
 }

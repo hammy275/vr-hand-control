@@ -6,6 +6,7 @@ import com.hammy275.vrhandcontrol.common.network.Network;
 import com.hammy275.vrhandcontrol.common.network.packet.GestureActionPacket;
 import com.hammy275.vrhandcontrol.common.vr.handlers.GestureHandler;
 import com.hammy275.vrhandcontrol.common.vr.GestureHandlers;
+import dev.architectury.platform.Platform;
 import net.minecraft.client.Minecraft;
 
 import java.util.LinkedList;
@@ -22,7 +23,7 @@ public class GestureDetection {
     }
 
     public void onClientTick(Minecraft minecraft) {
-        if (minecraft.player != null && !VRPlugin.API.playerInVR(mc.player)) {
+        if (minecraft.player != null && !VRPlugin.API.playerInVR(mc.player) && !Platform.isDevelopmentEnvironment()) {
             return;
         }
         data = new VRData();
@@ -39,9 +40,13 @@ public class GestureDetection {
             // other action successfully, perform the action and prevent other actions this tick.
             boolean allowActions = true;
             for (GestureHandler handler : GestureHandlers.gestureHandlers) {
-                if (handler.handleDetection(data, oldData) && allowActions) {
-                    allowActions = false;
-                    Network.INSTANCE.sendToServer(new GestureActionPacket(handler.getID()));
+                if (handler.handleDetection(data, oldData) && (allowActions || handler.alwaysRun())) {
+                    allowActions = allowActions && !handler.alwaysRun();
+                    if (handler.handleOnClient()) {
+                        handler.performAction(mc.player);
+                    } else {
+                        Network.INSTANCE.sendToServer(new GestureActionPacket(handler.getID()));
+                    }
                 }
             }
         }

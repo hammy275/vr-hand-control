@@ -92,6 +92,16 @@ public class SnapHandler implements GestureHandler {
         return new ResourceLocation(VRHandControl.MOD_ID, "snap");
     }
 
+    @Override
+    public boolean handleOnClient() {
+        return false;
+    }
+
+    @Override
+    public boolean alwaysRun() {
+        return false;
+    }
+
     private boolean isMiddlePinched(VRData data) {
         Pair<Finger, Float> maxPinch = data.rightAimState.getMaxFingerPinch();
         return data.rightAimState.isPinching(Finger.MIDDLE) || (maxPinch.getFirst() == Finger.MIDDLE && maxPinch.getSecond() > 0.5);
